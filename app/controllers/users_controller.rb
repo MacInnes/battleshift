@@ -5,4 +5,9 @@ class UsersController < ApplicationController
     @user = search.find_user(params[:id])
   end
 
+  def index
+    search = UserSearch.new
+    @users = search.find_all_users
+  end
+
 end

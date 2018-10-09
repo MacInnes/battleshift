@@ -4,10 +4,14 @@ class UserService
     get_json("/api/v1/users/#{id}")
   end
 
+  def find_all
+    get_json("api/v1/users")
+  end
+
   private
 
   def conn
-    Faraday.new(ENV["root_url"])
+    Faraday.new("https://enigmatic-gorge-11732.herokuapp.com/")
   end
 
   def get_json(url)
