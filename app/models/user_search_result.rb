@@ -4,6 +4,8 @@ class UserSearchResult
   end
 
   def user
+    user_data = service.user_search
+
     conn = Faraday.new(url: ENV['root_url']) do |faraday|
       faraday.adapter Faraday.default_adapter
     end
@@ -12,5 +14,11 @@ class UserSearchResult
     user_data = JSON.parse(response.body, symbolize_names: true)
 
     User.new(user_data)
+  end
+
+  private
+
+  def service
+    UserService.new(@user_id)
   end
 end
