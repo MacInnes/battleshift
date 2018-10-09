@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
   def show
-    @user = UserService.find(params[:id])
+    search = UserSearch.new
+    @user = search.find_user(params[:id])
   end
 
 end

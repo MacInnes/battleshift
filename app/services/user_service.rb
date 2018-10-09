@@ -1,10 +1,17 @@
 class UserService
 
-  def self.find(id)
-    conn = Faraday.new(ENV["root_url"])
-    response = conn.get("/api/v1/users/#{id}")
-    data = JSON.parse(response.body, symbolize_names: true)
-    User.new(data)
+  def find(id)
+    get_json("/api/v1/users/#{id}")
+  end
+
+  private
+
+  def conn
+    Faraday.new(ENV["root_url"])
+  end
+
+  def get_json(url)
+    JSON.parse(conn.get(url).body, symbolize_names: true)
   end
 
 end
