@@ -13,4 +13,8 @@ class UsersController < ApplicationController
     @users = search.find_all_users
   end
 
+  def edit
+    
+  end
+
 end
