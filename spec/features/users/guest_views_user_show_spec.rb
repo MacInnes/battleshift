@@ -16,7 +16,6 @@ feature 'Guest views a user' do
       visit '/users/1'
 
       expect(page).to have_content('Josiah Bartlet')
-      expect(page).to have_content('jbartlet@example.com')
     end
 
     scenario 'with an invalid user id' do

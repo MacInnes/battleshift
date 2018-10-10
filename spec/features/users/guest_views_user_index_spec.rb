@@ -11,12 +11,10 @@ feature 'Guest views all users' do
 
       within("#user_1") do
         expect(page).to have_content('Josiah Bartlet')
-        expect(page).to have_content('jbartlet@example.com')
       end
 
       within("#user_2") do
         expect(page).to have_content('asdf')
-        expect(page).to have_content('asdf@asdf.com')
       end
 
     end
