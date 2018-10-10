@@ -20,7 +20,6 @@ feature 'Guest views a user' do
     end
 
     scenario 'with an invalid user id' do
-      #TODO: figure out how to test 404 response with webmock/vcr
       stub_request(:get, "https://enigmatic-gorge-11732.herokuapp.com/api/v1/users/1000").
         with(
           headers: {
@@ -32,7 +31,7 @@ feature 'Guest views a user' do
 
       visit '/users/1000'
 
-      expect(response.status).to be(400)
+      expect(page.status_code).to be(400)
     end
   end
 end
