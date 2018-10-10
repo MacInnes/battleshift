@@ -9,6 +9,11 @@
   </head>
 
   <body>
+    <section>
+      <% flash.each do |type, message| %>
+        <%= content_tag :div, message.html_safe, class: type %>
+      <% end %>
+    </section>
     <%= yield %>
   </body>
 </html>

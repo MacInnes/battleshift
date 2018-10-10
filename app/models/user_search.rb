@@ -10,6 +10,11 @@ class UserSearch
     end
   end
 
+  def update_user(id, email)
+    service.update(id, email)
+    User.new(service.find(id))
+  end
+
   private
 
   def service
