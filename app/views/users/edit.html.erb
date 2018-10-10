@@ -1,0 +1,10 @@
+<h1>Edit <%= @user.name %></h1>
+
+<%= form_tag :update_user, method: :get do %>
+  <div class="text-field">
+    <%= label_tag :email %>
+    <%= text_field_tag :email %>
+
+    <%= submit_tag 'Save' %>
+  </div>
+<% end %>
