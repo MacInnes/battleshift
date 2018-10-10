@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       end
 
       resources :users, only: [:index, :show]
+      patch '/users/:id', to: 'users#update'
     end
   end
 
