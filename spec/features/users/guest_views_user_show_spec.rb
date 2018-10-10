@@ -28,11 +28,11 @@ feature 'Guest views a user' do
      	   'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
      	   'User-Agent'=>'Faraday v0.15.3'
          })
-        .to_return(status: 404)
+        .to_return(status: 400)
 
       visit '/users/1000'
 
-      expect(response.status).to be(404)
+      expect(response.status).to be(400)
     end
   end
 end
