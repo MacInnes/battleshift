@@ -1,6 +1,7 @@
 <% @users.each do |user| %>
-  <p class="user">
+  <p class="user" id="user_<%= user.id %>">
     <%= user.name %>
     <%= user.email %>
+    <%= link_to "Edit", edit_user_path(user) %>
   </p>
 <% end %>

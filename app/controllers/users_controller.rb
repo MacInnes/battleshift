@@ -10,4 +10,8 @@ class UsersController < ApplicationController
     @users = search.find_all_users
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
 end

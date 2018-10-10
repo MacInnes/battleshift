@@ -11,7 +11,9 @@ class UserService
   private
 
   def conn
-    Faraday.new("https://enigmatic-gorge-11732.herokuapp.com/")
+    Faraday.new("http://localhost:3000")
+    # Faraday.new("https://enigmatic-gorge-11732.herokuapp.com/")
+
   end
 
   def get_json(url)

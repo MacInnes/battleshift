@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://enigmatic-gorge-11732.herokuapp.com/api/v1/users
+    uri: http://localhost:3000/api/v1/users
     body:
       encoding: US-ASCII
       string: ''
@@ -18,30 +18,21 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Server:
-      - Cowboy
-      Date:
-      - Tue, 09 Oct 2018 22:23:57 GMT
-      Connection:
-      - keep-alive
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"496a1c7c15f3428e8a27caed6755a177"
+      - W/"1f2dab0a9f3d615a84cb0107096de4b6"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - b97ebcff-ad07-4aff-a052-b59581ade5f4
+      - 6f8ecfe4-5b7f-4fff-8cf6-1ddb11bbb8cd
       X-Runtime:
-      - '0.005588'
+      - '0.007532'
       Transfer-Encoding:
       - chunked
-      Via:
-      - 1.1 vegur
     body:
       encoding: UTF-8
-      string: '[{"id":2,"name":"asdf","email":"asdf@asdf.com"},{"id":1,"name":"Josiah
-        Bartlet","email":"jbartlet@example.com"}]'
+      string: '[{"id":1,"name":"Josiah Bartlet","email":"jbartlet@example.com"},{"id":2,"name":"asdf","email":"asdf@fake.com"}]'
     http_version: 
-  recorded_at: Tue, 09 Oct 2018 22:23:58 GMT
+  recorded_at: Wed, 10 Oct 2018 01:10:22 GMT
 recorded_with: VCR 4.0.0
