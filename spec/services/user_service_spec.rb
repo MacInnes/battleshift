@@ -10,6 +10,11 @@ describe UserService do
   context 'Instance Methods' do
     context '#user_search' do
       it 'returns a hash if new is an integer' do
+        file = File.open("./fixtures/users/single_user_search.json")
+    
+        stub_request(:get, "http://enigmatic-gorge-11732.herokuapp.com/api/v1/users/1").
+          to_return(body: file, status: 200)
+
         service = UserService.new(1)
 
         expect(service.user_search).to be_a(Hash)
@@ -19,6 +24,11 @@ describe UserService do
       end
 
       it 'returns a collection of hashes if new is nil' do
+        file = File.open("./fixtures/users/all_user_search.json")
+    
+        stub_request(:get, "http://enigmatic-gorge-11732.herokuapp.com/api/v1/users/").
+          to_return(body: file, status: 200)
+
         service = UserService.new
 
         expect(service.user_search).to be_a(Array)
