@@ -5,13 +5,21 @@ class UserService
   end
 
   def find_all
-    get_json("api/v1/users")
+    get_json("/api/v1/users")
+  end
+
+  def update(id, email)
+    update_json("/api/v1/users/#{id}", email)
   end
 
   private
 
   def conn
-    Faraday.new("http://enigmatic-gorge-11732.herokuapp.com")
+    Faraday.new(ENV["root_url"])
+  end
+
+  def update_json(url, payload)
+    response = Faraday.new(ENV["root_url"]).patch(url, payload)
   end
 
   def get_json(url)

@@ -10,6 +10,10 @@ class UserSearch
     end
   end
 
+  def update_user(id, email)
+    service.update(id, email)
+  end
+
   private
 
   def service
