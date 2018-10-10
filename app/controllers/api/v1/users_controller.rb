@@ -6,7 +6,12 @@ module Api
       end
 
       def show
-        render json: User.find(params[:id])
+        user = User.find_by_id(params[:id])
+        if user
+          render json: user
+        else
+          render status: :not_found
+        end
       end
     end
   end
