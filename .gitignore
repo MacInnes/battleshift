@@ -17,5 +17,6 @@
 /yarn-error.log
 
 /coverage
+/config/application.yml
 
 .byebug_history
