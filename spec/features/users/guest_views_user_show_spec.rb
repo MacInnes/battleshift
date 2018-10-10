@@ -32,7 +32,7 @@ feature 'Guest views a user' do
 
       visit '/users/1000'
 
-      expect(response.status).to be(400)
+      expect(page.status_code).to be(400)
     end
   end
 end
