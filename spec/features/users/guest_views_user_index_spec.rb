@@ -4,7 +4,7 @@ feature 'Guest views all users' do
   context 'via /users' do
     scenario 'returns an index of all users' do
       file = File.open('./fixtures/user/all_user_search.json')
-      stub_request(:get, 'http://enigmatic-gorge-11732.herokuapp.com/api/v1/users/1')
+      stub_request(:get, 'http://enigmatic-gorge-11732.herokuapp.com/api/v1/users')
         .to_return(body: file, status: 200)
 
       visit '/users'
