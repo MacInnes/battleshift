@@ -12,5 +12,14 @@ feature 'Guest views a user' do
       expect(page).to have_content('Josiah Bartlet')
       expect(page).to have_content('jbartlet@example.com')
     end
+
+    scenario 'with an invalid user id' do
+      stub_request(:get, 'http://enigmatic-gorge-11732.herokuapp.com/api/v1/users/1000')
+        .to_return(status: 400)
+
+      visit '/users/1000'
+
+      expect(response.status).to be(400)
+    end
   end
 end
