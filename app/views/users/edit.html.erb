@@ -1,0 +1,10 @@
+<h1>Edit <%= @user.name %></h1>
+
+<%= form_tag "/users/#{@user.id}", method: :patch do %>
+  <div class="text-field">
+    <%= label_tag :email %>
+    <%= text_field_tag :email, nil, placeholder: @user.email %>
+    
+    <%= submit_tag 'Save' %>
+  </div>
+<% end %>

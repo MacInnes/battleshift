@@ -13,6 +13,11 @@ module Api
           render status: :not_found
         end
       end
+
+      def update
+        user = User.find_by_id(params[:id])
+        user.update(email: params[:email])
+      end
     end
   end
 end
