@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:id] = @user.id
-      # email method goes here
+      RegistrationNotifierMailer.register(@user).deliver_now
       redirect_to dashboard_path
     else
       redirect_to('/register', notice: 'Invalid registration details.')
