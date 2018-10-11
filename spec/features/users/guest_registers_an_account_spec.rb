@@ -12,13 +12,13 @@ feature 'Guest creates an account' do
 
       fill_in :user_email, with: 'test@example.com'
       fill_in :user_name, with: user_name
-      fill_in :password, with: 'testpass'
-      fill_in :password_confirmation, with: 'testpass'
+      fill_in :user_password, with: 'testpass'
+      fill_in :user_password_confirmation, with: 'testpass'
       click_on 'Submit'
 
       expect(current_path).to eq('/dashboard')
       expect(page).to have_content("Logged in as #{user_name}")
-      expect(page).to have_content('This account has not yet been acticvated. Please check your email.')
+      expect(page).to have_content('This account has not yet been activated. Please check your email.')
     end
 
     scenario 'unsuccessfully creates with required fields not entered' do
@@ -26,8 +26,8 @@ feature 'Guest creates an account' do
 
       fill_in :user_email, with: ''
       fill_in :user_name, with: ''
-      fill_in :password, with: ''
-      fill_in :password_confirmation, with: ''
+      fill_in :user_password, with: ''
+      fill_in :user_password_confirmation, with: ''
       click_on 'Submit'
 
       expect(current_path).to eq('/register')
