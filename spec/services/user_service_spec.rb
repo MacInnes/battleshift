@@ -44,7 +44,7 @@ describe UserService do
 
     context '#update' do
       it 'updates a user' do
-        stub_request(:patch, 'http://localhost:3000/api/v1/users')
+        stub_request(:patch, 'http://enigmatic-gorge-11732.herokuapp.com/api/v1/users/1')
           .to_return(status: 204)
 
         service = UserService.new
