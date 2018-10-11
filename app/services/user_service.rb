@@ -19,7 +19,7 @@ class UserService
   end
 
   def update_json(url, payload)
-    response = Faraday.new(ENV["root_url"]).patch(url, payload)
+    response = conn.patch(url, payload)
   end
 
   def get_json(url)
