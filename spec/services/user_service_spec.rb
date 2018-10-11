@@ -19,7 +19,6 @@ describe UserService do
 
         expect(result).to be_a(Hash)
         expect(result[:name]).to eq('Josiah Bartlet')
-        expect(result[:email]).to eq('jbartlet@example.com')
       end
     end
 
@@ -35,10 +34,8 @@ describe UserService do
         expect(result).to be_a(Array)
         expect(result[1]).to be_a(Hash)
         expect(result[1][:name]).to eq('Josiah Bartlet')
-        expect(result[1][:email]).to eq('jbartlet@example.com')
         expect(result[0]).to be_a(Hash)
         expect(result[0][:name]).to eq('asdf')
-        expect(result[0][:email]).to eq('asdf@asdf.com')
       end
     end
   end

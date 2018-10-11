@@ -9,14 +9,9 @@ feature 'Guest views all users' do
 
       visit '/users'
 
-      within("#user_1") do
-        expect(page).to have_content('Josiah Bartlet')
-      end
-
-      within("#user_2") do
-        expect(page).to have_content('asdf')
-      end
-
+      expect(page).to have_css(".user", count: 2)
+      expect(page).to have_css("#user_1", count: 1)
+      expect(page).to have_css("#user_2", count: 1)
     end
   end
 end
