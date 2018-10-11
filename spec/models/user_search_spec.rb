@@ -45,7 +45,7 @@ describe UserSearch do
     context '#update_user(id, email)' do
       it 'updates a user email' do
         file = File.open('./fixtures/users/single_user_search.json')
-        stub_request(:patch, 'http://localhost:3000/api/v1/users/1')
+        stub_request(:patch, 'http://enigmatic-gorge-11732.herokuapp.com/api/v1/users/1')
           .to_return(body: file, status: 200)
 
         search = UserSearch.new

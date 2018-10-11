@@ -9,14 +9,21 @@ feature 'Guest views all users' do
 
       visit '/users'
 
-      within("#user_1") do
-        expect(page).to have_content('Josiah Bartlet')
-        expect(page).to have_content('jbartlet@example.com')
-      end
+      # within("#user_1") do
+      #   expect(page).to have_content('Josiah Bartlet')
+      #   expect(page).to have_content('jbartlet@example.com')
+      # end
 
-      within("#user_2") do
-        expect(page).to have_content('asdf')
-        expect(page).to have_content('asdf@asdf.com')
+      # within("#user_2") do
+      #   expect(page).to have_content('asdf')
+      #   expect(page).to have_content('asdf@asdf.com')
+      # end
+
+      expect(page).to have_css('.user', count: 2)
+
+      within('#user_1') do
+        expect(page).to have_css('.user-name')
+        expect(page).to have_css('.user-email')
       end
 
     end

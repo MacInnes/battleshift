@@ -15,8 +15,15 @@ feature 'Guest edits a user' do
       # When I fill in the email field with "josiah@example.com"
       fill_in "email", with: 'josiah@example.com'
       # And I click "Save"
+
+      # Load the updated stub
+      file = File.open('./fixtures/users/updated_all_users.json')
+      stub_request(:get, 'http://enigmatic-gorge-11732.herokuapp.com/api/v1/users')
+        .to_return(body: file, status: 200)
+
       click_on 'Save'
-      # Then I should be on "/users"
+
+      # Then I should be on "/users"X
       expect(current_path).to eq('/users')
       # And I should see a flash message that says "Successfully updated Josiah Bartlet."
       expect(page).to have_content('Successfully updated Josiah Bartlet')
