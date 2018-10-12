@@ -1,5 +1,5 @@
 Welcome, <%= @user.name %>
 
-Account Activation URL: <%= ENV['root_url'] + "/users/#{@user.id}/edit?key=#{@user.api_key}" %>
+Account Activation URL: <%= ENV['root_url'] + "/activate_user?user=#{@user.id}&key=#{@user.api_key}" %>
 
 Your API Key: <%= @user.api_key %>
