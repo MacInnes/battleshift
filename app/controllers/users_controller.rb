@@ -7,8 +7,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      @user.generate_api_key
       session[:id] = @user.id
-      # email method goes here
       redirect_to dashboard_path
     else
       redirect_to('/register', notice: 'Invalid registration details.')
