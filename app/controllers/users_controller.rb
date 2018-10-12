@@ -1,5 +1,20 @@
 class UsersController < ApplicationController
 
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      session[:id] = @user.id
+      # email method goes here
+      redirect_to dashboard_path
+    else
+      redirect_to('/register', notice: 'Invalid registration details.')
+    end
+  end
+
   def show
     search = UserSearch.new
     @user = search.find_user(params[:id])
@@ -28,6 +43,12 @@ class UsersController < ApplicationController
 
     user  = search.find_user(params[:id])
     redirect_to('/users', notice: "Successfully updated #{user.name}")
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
 end
