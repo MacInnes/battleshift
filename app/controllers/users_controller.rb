@@ -30,6 +30,17 @@ class UsersController < ApplicationController
   end
 
   def edit
+    if params[:key]
+      require 'pry'; binding.pry
+      user = User.find_by_id(params[:id])
+      if user.inactive?
+        user.activate_account
+        redirect_to('/dashboard', notice: 'Account activated!')
+      else
+        redirect_to('/dashboard', notice: 'Account already acivated.')
+      end
+    end
+
     search = UserSearch.new
     @user  = search.find_user(params[:id])
     render status: 400 if @user.nil?
