@@ -6,9 +6,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.generate_api_key
     if @user.save
-      @user.generate_api_key
       session[:id] = @user.id
+      send_activation_email
       redirect_to dashboard_path
     else
       redirect_to('/register', notice: 'Invalid registration details.')
@@ -49,6 +50,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def send_activation_email
+    UserActivatorMailer.activate(@user).deliver_now
   end
 
 end
