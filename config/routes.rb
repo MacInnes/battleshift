@@ -16,4 +16,5 @@ Rails.application.routes.draw do
 
   get '/register', to: "users#new"
   get '/dashboard', to: "dashboard#show"
+  get '/activate_user', to: 'activate_user#update'
 end

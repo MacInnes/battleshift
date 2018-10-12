@@ -1,0 +1,7 @@
+<h5>Welcome, <%= @user.name %></h5>
+
+<p>
+  <%= link_to 'Click To Activate Your Account', ENV['root_url'] + "/activate_user?user=#{@user.id}&key=#{@user.api_key}" %>
+</p><br />
+
+<p><strong>Your API Key:</strong> <%= @user.api_key %></p>
