@@ -6,6 +6,8 @@ class Api::V1::Games::ShipsController < ApiController
     ship_placer.run
     @game.save
 
+    require 'pry'; binding.pry
+
     render json: @game, message: ship_placer.message(ship_params[:ship_size])
   end
 
@@ -29,9 +31,9 @@ class Api::V1::Games::ShipsController < ApiController
   end
 
   def board_finder(player, game)
-    if @player.api_key == ENV['BATTLESHIFT_API_KEY']
+    if @game.player_1.api_key == request.headers['X-API-KEY']
       @game.player_1_board
-    else
+    elsif @game.player_2.api_key == request.headers['X-API-KEY']
       @game.player_2_board
     end
   end
