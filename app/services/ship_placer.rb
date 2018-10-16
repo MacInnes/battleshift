@@ -18,6 +18,14 @@ class ShipPlacer
     end
   end
 
+  def message(ship_length)
+    if ship_length == 3
+      "Successfully placed ship with a size of #{ship_length}. You have #{2 - @board.ship_count} ship(s) to place with a size of 2."
+    elsif ship_length == 2
+      "Successfully placed ship with a size of #{ship_length}. You have #{2 - @board.ship_count} ship(s) to place."
+    end
+  end
+
   private
   attr_reader :board, :ship,
     :start_space, :end_space

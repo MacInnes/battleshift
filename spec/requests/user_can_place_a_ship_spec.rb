@@ -20,8 +20,6 @@ describe 'User places a ship' do
       post "/api/v1/games/#{game.id}/ships", params: ship_1_payload, headers: headers
 
       expect(response.status).to eq(200)
-
-      require 'pry'; binding.pry
     end
   end
 end
