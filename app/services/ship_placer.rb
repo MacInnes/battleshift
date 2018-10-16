@@ -9,8 +9,10 @@ class ShipPlacer
   def run
     if same_row?
       place_in_row
+      @board.ship_count += 1
     elsif same_column?
       place_in_column
+      @board.ship_count += 1
     else
       raise InvalidShipPlacement.new("Ship must be in either the same row or column.")
     end
