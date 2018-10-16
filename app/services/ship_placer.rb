@@ -9,10 +9,20 @@ class ShipPlacer
   def run
     if same_row?
       place_in_row
+      @board.ship_count += 1
     elsif same_column?
       place_in_column
+      @board.ship_count += 1
     else
       raise InvalidShipPlacement.new("Ship must be in either the same row or column.")
+    end
+  end
+
+  def message(ship_length)
+    if ship_length == 3
+      "Successfully placed ship with a size of #{ship_length}. You have #{2 - @board.ship_count} ship(s) to place with a size of 2."
+    elsif ship_length == 2
+      "Successfully placed ship with a size of #{ship_length}. You have #{2 - @board.ship_count} ship(s) to place."
     end
   end
 
