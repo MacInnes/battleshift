@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20181016011625) do
     t.integer "current_turn"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "player_1_key"
+    t.string "player_2_key"
     t.integer "player_1_id"
     t.integer "player_2_id"
   end

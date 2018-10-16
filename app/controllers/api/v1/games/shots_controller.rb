@@ -4,8 +4,8 @@ module Api
       class ShotsController < ApiController
         def create
           game = Game.find(params[:game_id])
-
-          turn_processor = TurnProcessor.new(game, params[:shot][:target])
+          user = User.find_by_api_key(request.headers["X-API-KEY"])
+          turn_processor = TurnProcessor.new(game, params[:shot][:target], user)
 
           turn_processor.run!
           render json: game, message: turn_processor.message
