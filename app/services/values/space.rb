@@ -8,12 +8,16 @@ class Space
   end
 
   def attack!
-    @status = if contents && not_attacked?
-                contents.attack!
-                "Hit"
-              else
-                "Miss"
-              end
+    if contents && not_attacked?
+      contents.attack!
+      output = "Hit"
+      if contents.is_sunk?
+        output += ". Battleship sunk."
+      end
+    else
+      output = "Miss"
+    end
+    @status = output
   end
 
   def occupy!(ship)
@@ -28,4 +32,3 @@ class Space
     status == "Not Attacked"
   end
 end
-
