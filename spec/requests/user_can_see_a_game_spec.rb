@@ -32,12 +32,17 @@ describe 'GET /api/v1/games/1' do
                      end_space: "D1"
                     ).run
 
+      player_1 = User.new
+      player_2 = User.new
+
       game_attributes = {
                       player_1_board: player_1_board,
                       player_2_board: player_2_board,
                       player_1_turns: 0,
                       player_2_turns: 0,
-                      current_turn: "challenger"
+                      current_turn: "player_1",
+                      player_1: player_1,
+                      player_2: player_2
                     }
 
       game = Game.new(game_attributes)

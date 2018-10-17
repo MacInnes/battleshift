@@ -1,13 +1,23 @@
 class Board
   attr_reader :length,
               :board
-              
+
   attr_accessor :ship_count
 
   def initialize(length)
     @length = length
     @board = create_grid
     @ship_count = 0
+  end
+
+  def all_sunk?
+    spaces = space_names.find_all do |name|
+      locate_space(name).contents
+    end.map do |space|
+      locate_space(space)
+    end.all? do |space|
+      space.contents.is_sunk?
+    end
   end
 
   def get_row_letters
@@ -206,4 +216,3 @@ class Board
     get_column(coordinate) == "1"
   end
 end
-

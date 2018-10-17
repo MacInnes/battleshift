@@ -7,8 +7,9 @@ module Api
           user = User.find_by_api_key(request.headers["X-API-KEY"])
           turn_processor = TurnProcessor.new(game, params[:shot][:target], user)
 
-          turn_processor.run!
-          render json: game, message: turn_processor.message
+          turn_processor.validate_turn
+          
+          render json: game, status: turn_processor.status, message: turn_processor.message
         end
       end
     end

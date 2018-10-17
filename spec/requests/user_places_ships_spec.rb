@@ -7,7 +7,7 @@ describe 'User places ships' do
       player_1.generate_api_key
       player_2.generate_api_key
 
-      game = create(:game, player_1_key: player_1.api_key, player_2_key: player_2.api_key)
+      game = create(:game, player_1_key: player_1.api_key, player_2_key: player_2.api_key, player_1: player_1, player_2: player_2)
 
       ship_1_payload = {
         ship_size: 3,
