@@ -1,5 +1,5 @@
 class Game < ApplicationRecord
-  attr_accessor :messages, :winner
+  attr_accessor :messages
 
   enum current_turn: ["player_1", "player_2"]
   serialize :player_1_board
@@ -19,6 +19,10 @@ class Game < ApplicationRecord
     else
       self.current_turn = "player_1"
     end
+  end
+
+  def winner(user)
+    self.update(winner: user.id)
   end
 
 end

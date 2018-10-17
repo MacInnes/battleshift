@@ -33,7 +33,8 @@ class TurnProcessor
       if opponent.board.all_sunk?
         #TODO: refactor battleship sunk to this class
         @messages << "Game over."
-        @game.winner = @user.email
+        @game.winner(@user)
+        @game.save!
       end
     rescue InvalidAttack => e
       @status = 400
