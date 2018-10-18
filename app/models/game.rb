@@ -21,8 +21,8 @@ class Game < ApplicationRecord
     end
   end
 
-  def winner(user)
-    self.update(winner: user.id)
-  end
+  # def winner(user)
+  #   self.update(winner: user.id)
+  # end
 
 end

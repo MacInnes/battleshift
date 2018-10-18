@@ -1,40 +1,42 @@
 class TurnProcessor
   attr_reader :status
 
-  def initialize(game, target, user)
+  def initialize(game, target)
     @game   = game
     @target = target
     @messages = []
-    @user = user
     @status = 200
   end
 
-  def validate_turn
-    if @game[:winner]
-      @status = 400
-      @messages << "Invalid move. Game over."
-    elsif @game.current_turn == "player_1" && @game.player_1_id == @user.id
-      @game.change_turn
-      run!
-    elsif @game.current_turn == "player_2" && @game.player_2_id == @user.id
-      @game.change_turn
-      run!
-    else
-      @status = 400
-      @messages << "Invalid move. It's your opponent's turn"
-    end
-  end
+  # def validate_turn
+  #   if @game.current_turn == "player_1" && @game.player_1_id == @user.id
+  #     @game.change_turn
+  #     run!
+  #   elsif @game.current_turn == "player_2" && @game.player_2_id == @user.id
+  #     @game.change_turn
+  #     run!
+  #   end
+  # end
 
   def run!
     begin
-      attack_opponent
-      game.save!
+      # attack_opponent
+      # game.save!
 
-      if opponent.board.all_sunk?
-        #TODO: refactor battleship sunk to this class
-        @messages << "Game over."
-        @game.winner(@user)
-        @game.save!
+      # if opponent.board.all_sunk?
+      #   #TODO: refactor battleship sunk to this class
+      #   @messages << "Game over."
+      #   @game.winner(@user)
+      #   @game.save!
+      # end
+      if @game.current_turn == 'player_1'
+        attack_opponent(@game.player_2_board, @game.player_1)
+        @game.change_turn
+        @game.save
+      elsif @game.current_turn == 'player_2'
+        attack_opponent(@game.player_1_board, @game.player_2)
+        @game.change_turn
+        @game.save
       end
     rescue InvalidAttack => e
       @status = 400
@@ -48,30 +50,26 @@ class TurnProcessor
 
   private
 
-  attr_reader :game, :target, :user
+  attr_reader :game, :target
 
-  def attack_opponent
-    result = Shooter.fire!(board: opponent.board, target: target)
+  def attack_opponent(player_board, player)
+    result = Shooter.new(board: player_board, target: target).fire!
     @messages << "Your shot resulted in a #{result}"
-    game.player_1_turns += 1
-  end
-
-  def ai_attack_back
-    result = AiSpaceSelector.new(player.board).fire!
-    @messages << "The computer's shot resulted in a #{result}"
-    game.player_2_turns += 1
-  end
-
-  def opponent
-    if game.player_1_id == user.id
-      Player.new(game.player_2_board)
-    elsif game.player_2_id == user.id
-      Player.new(game.player_1_board)
+    if win?(player_board)
+      @messages << 'Game over.'
+      @game.winner = player.email
+      @game.save
     end
   end
 
-  def win?
-    opponent.board.all_sunk?
+  # def ai_attack_back
+  #   result = AiSpaceSelector.new(player.board).fire!
+  #   @messages << "The computer's shot resulted in a #{result}"
+  #   game.player_2_turns += 1
+  # end
+
+  def win?(player_board)
+    player_board.all_sunk?
   end
 
 end

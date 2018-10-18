@@ -13,9 +13,4 @@ class GameSerializer < ActiveModel::Serializer
   def message
     @instance_options[:message]
   end
-
-  def winner
-    User.find(object[:winner]).email if object[:winner]
-  end
-
 end
