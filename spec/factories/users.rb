@@ -6,5 +6,6 @@ FactoryBot.define do
     password {"asdf"}
     password_confirmation {"asdf"}
     phone { 555555555 }
+    api_key { "111111" }
   end
 end
