@@ -8,27 +8,8 @@ class TurnProcessor
     @status = 200
   end
 
-  # def validate_turn
-  #   if @game.current_turn == "player_1" && @game.player_1_id == @user.id
-  #     @game.change_turn
-  #     run!
-  #   elsif @game.current_turn == "player_2" && @game.player_2_id == @user.id
-  #     @game.change_turn
-  #     run!
-  #   end
-  # end
-
   def run!
     begin
-      # attack_opponent
-      # game.save!
-
-      # if opponent.board.all_sunk?
-      #   #TODO: refactor battleship sunk to this class
-      #   @messages << "Game over."
-      #   @game.winner(@user)
-      #   @game.save!
-      # end
       if @game.current_turn == 'player_1' && @game.player_2.nil?
         attack_opponent(@game.player_2_board, @game.player_1)
         ai_attack_back
