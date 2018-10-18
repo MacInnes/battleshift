@@ -2,7 +2,7 @@ module Api
   module V1
     module Games
       class ShotsController < ApiController
-        before_action :find_game, :find_player, :verify_game_status, :verify_turn
+        before_action :validate_api_keys, :find_game, :find_player, :verify_game_status, :verify_turn
 
         def create
           turn_processor.run!

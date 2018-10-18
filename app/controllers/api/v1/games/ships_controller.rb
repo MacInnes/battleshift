@@ -1,5 +1,5 @@
 class Api::V1::Games::ShipsController < ApiController
-  before_action :set_game, :set_player
+  before_action :validate_api_keys, :set_game, :set_player
 
   def create
     ship_placer.run
