@@ -11,7 +11,7 @@ describe User, type: :model do
   describe 'Instance Methods' do
     context '#generate_api_key' do
       it 'generates an api key for that user' do
-        user = create(:user)
+        user = create(:user, api_key: nil)
 
         expect(user.api_key).to be_nil
 
