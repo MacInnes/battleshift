@@ -36,8 +36,8 @@ module Api
           player_1_board: Board.new(4),
           player_2_board: Board.new(4),
           current_turn: 'player_1',
-          player_1: player1,
-          player_2: player2
+          player_1_id: player1.id,
+          player_2_id: player2.id
         }
       end
     end
