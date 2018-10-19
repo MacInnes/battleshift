@@ -22,5 +22,18 @@ describe User, type: :model do
         expect(user.api_key.length).to eq(22)
       end
     end
+
+    context 'account activation' do
+      it "activates an account" do
+        user = create(:user)
+
+        expect(user.status).to eq("inactive")
+
+        user.activate_account
+
+        expect(user.status).to eq("active")
+      end
+
+    end
   end
 end
