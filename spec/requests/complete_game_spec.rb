@@ -4,10 +4,13 @@ describe 'A complete 2-player game' do
   it "can finish a complete game" do
     player_1 = create(:user)
     player_2 = create(:user, api_key: "asdf", email: "player_2@example.com")
+    invalid_player = create(:user, api_key: "khfjkfhjdfd")
+
     game = create(:game, player_1_id: player_1.id, player_2_id: player_2.id)
 
     headers_1 = { "CONTENT_TYPE" => "application/json", "X-API-KEY" => player_1.api_key }
     headers_2 = { "CONTENT_TYPE" => "application/json", "X-API-KEY" => player_2.api_key }
+    invalid_headers = { "CONTENT_TYPE" => "application/json", "X-API-KEY" => invalid_player.api_key }
 
     ship_1_payload = {
       ship_size: 3,
@@ -56,6 +59,16 @@ describe 'A complete 2-player game' do
     expect(result[:message]).to include("Successfully placed ship with a size of 2. You have 0 ship(s) to place.")
 
     # shots
+
+    # invalid player
+
+    target = {target: "A1"}.to_json
+    post "/api/v1/games/#{game.id}/shots", params: target, headers: invalid_headers
+    result = JSON.parse(response.body, symbolize_names: true)
+
+    expect(response.status).to eq(401)
+    expect(result[:message]).to include("Unauthorized")
+
     #player 1
 
     target = {target: "A1"}.to_json
